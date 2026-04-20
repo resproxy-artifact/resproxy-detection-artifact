@@ -129,7 +129,7 @@ def run_experiment(provider_name, protocol, target, countries, n_requests,
     # Include server region in filename if using domain override
     server_tag = ""
     if domain_override:
-        # Extract region from domain: direct-ap.dns-insight.com -> ap
+        # Extract region from domain: direct-ap.example.com -> ap
         parts = domain_override.split(".")
         if parts[0].startswith("direct-"):
             server_tag = f"_{parts[0].replace('direct-', '')}"
@@ -196,7 +196,7 @@ def main():
                         help="Comma-separated country codes (default: 10 countries)")
     parser.add_argument("--n", type=int, default=20, help="Requests per country")
     parser.add_argument("--domain", default=None,
-                        help="Override target domain (e.g., direct-ap.dns-insight.com)")
+                        help="Override target domain (e.g., direct-ap.example.com)")
     parser.add_argument("--sleep-min", type=float, default=2)
     parser.add_argument("--sleep-max", type=float, default=3)
     parser.add_argument("--dry-run", action="store_true")

@@ -55,8 +55,8 @@
     "api_key": "YOUR_RIPE_ATLAS_API_KEY"
   },
   "server": {
-    "ip": "54.210.31.245",
-    "domain_direct": "direct.dns-insight.com",
-    "domain_cf": "cf.dns-insight.com"
+    "ip": "SERVER_IP_PLACEHOLDER",
+    "domain_direct": "direct.example.com",
+    "domain_cf": "cf.example.com"
   }
 }

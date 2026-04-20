@@ -6,7 +6,7 @@ cd /home/ubuntu/resproxy-detection
 source .env
 
 N=30
-TARGET="direct-ap.dns-insight.com"  # Tokyo to avoid localhost routing
+TARGET="direct-ap.example.com"  # Tokyo to avoid localhost routing
 LOGDIR="data/experiment_logs"
 mkdir -p "$LOGDIR/scope" "$LOGDIR/deployment"
 
@@ -122,7 +122,7 @@ echo "--- Low load (serial, 1 req/s) ---"
 for i in $(seq 1 30); do
     ts_before=$(date +%s%N)
     resp=$(curl -s -D - -o /dev/null \
-      "https://direct.dns-insight.com/?src=deploy_low&load=low&n=$i&ts=$(date +%s)" \
+      "https://direct.example.com/?src=deploy_low&load=low&n=$i&ts=$(date +%s)" \
       --connect-timeout 5 --max-time 10 2>&1)
     ts_after=$(date +%s%N)
     req_time=$(echo "$resp" | grep -i x-request-time | awk '{print $2}' | tr -d '\r')
@@ -133,16 +133,16 @@ done | tee "$LOGDIR/deployment/low_load.log"
 # 2c. Medium load: 10 concurrent
 echo "--- Medium load (10 concurrent, 5s) ---"
 wrk -t2 -c10 -d5s --latency \
-  "https://direct.dns-insight.com/?src=deploy_medium&load=medium" \
+  "https://direct.example.com/?src=deploy_medium&load=medium" \
   2>&1 | tee "$LOGDIR/deployment/medium_load.log"
 
 # Send measurement requests during medium load
-wrk -t2 -c10 -d10s "https://direct.dns-insight.com/?src=deploy_medium_bg&load=medium" &>/dev/null &
+wrk -t2 -c10 -d10s "https://direct.example.com/?src=deploy_medium_bg&load=medium" &>/dev/null &
 WRK_PID=$!
 sleep 2
 for i in $(seq 1 20); do
     curl -s -o /dev/null -w "%{http_code},%{time_total}\n" \
-      "https://direct.dns-insight.com/?src=deploy_medium_measure&load=medium&n=$i&ts=$(date +%s)" \
+      "https://direct.example.com/?src=deploy_medium_measure&load=medium&n=$i&ts=$(date +%s)" \
       --connect-timeout 5 --max-time 10
     sleep 0.5
 done | tee "$LOGDIR/deployment/medium_measure.log"
@@ -152,16 +152,16 @@ wait $WRK_PID 2>/dev/null
 # 2d. High load: 100 concurrent
 echo "--- High load (100 concurrent, 5s) ---"
 wrk -t4 -c100 -d5s --latency \
-  "https://direct.dns-insight.com/?src=deploy_high&load=high" \
+  "https://direct.example.com/?src=deploy_high&load=high" \
   2>&1 | tee "$LOGDIR/deployment/high_load.log"
 
 # Send measurement during high load
-wrk -t4 -c100 -d10s "https://direct.dns-insight.com/?src=deploy_high_bg&load=high" &>/dev/null &
+wrk -t4 -c100 -d10s "https://direct.example.com/?src=deploy_high_bg&load=high" &>/dev/null &
 WRK_PID=$!
 sleep 2
 for i in $(seq 1 20); do
     curl -s -o /dev/null -w "%{http_code},%{time_total}\n" \
-      "https://direct.dns-insight.com/?src=deploy_high_measure&load=high&n=$i&ts=$(date +%s)" \
+      "https://direct.example.com/?src=deploy_high_measure&load=high&n=$i&ts=$(date +%s)" \
       --connect-timeout 5 --max-time 10
     sleep 0.5
 done | tee "$LOGDIR/deployment/high_measure.log"

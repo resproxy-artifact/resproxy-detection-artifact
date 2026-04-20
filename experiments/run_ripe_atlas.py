@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create RIPE Atlas TLS measurement to direct.dns-insight.com."""
+"""Create RIPE Atlas TLS measurement to direct.example.com."""
 
 import json
 import sys

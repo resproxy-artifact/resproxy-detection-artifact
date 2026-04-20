@@ -13,10 +13,10 @@ COUNTRIES="us,ca,mx,br,gb,de,fr,za,ru,in,jp,kr,sg,au,id"
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 
 declare -A DOMAINS
-DOMAINS[us]="detector.dns-insight.com"
-DOMAINS[ap]="detector-ap.dns-insight.com"
-DOMAINS[eu]="detector-eu.dns-insight.com"
-DOMAINS[sa]="detector-sa.dns-insight.com"
+DOMAINS[us]="detector.example.com"
+DOMAINS[ap]="detector-ap.example.com"
+DOMAINS[eu]="detector-eu.example.com"
+DOMAINS[sa]="detector-sa.example.com"
 
 PROVIDERS=(brightdata soax oxylabs iproyal netnut oxylabs_mobile oxylabs_isp)
 

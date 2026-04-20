@@ -69,9 +69,9 @@ def run_scenario_tests():
     print("=" * 70)
 
     scenarios = {
-        "normal_target": "https://direct.dns-insight.com/?scenario=normal&ts={}",
+        "normal_target": "https://direct.example.com/?scenario=normal&ts={}",
         "dns_failure": "https://nonexistent-domain-xyz-{}.com/",
-        "conn_refused": "https://direct.dns-insight.com:9999/?scenario=refused",
+        "conn_refused": "https://direct.example.com:9999/?scenario=refused",
     }
 
     N = 30
@@ -129,9 +129,9 @@ def run_batch_test():
     print("=" * 70)
 
     targets = {
-        "normal": "https://direct.dns-insight.com/?batch=1&ts={}",
+        "normal": "https://direct.example.com/?batch=1&ts={}",
         "dns_fail": "https://nonexistent-xyz-{}.com/",
-        "conn_refuse": "https://direct.dns-insight.com:9999/",
+        "conn_refuse": "https://direct.example.com:9999/",
     }
 
     N = 500
@@ -345,7 +345,7 @@ def main():
     print(f"Start: {datetime.now(timezone.utc).isoformat()}")
 
     # Verify proxy is running
-    r = curl_request(NORMAL_PORT, "https://direct.dns-insight.com/health", timeout=5)
+    r = curl_request(NORMAL_PORT, "https://direct.example.com/health", timeout=5)
     if r["http_code"] != "200":
         print(f"ERROR: Normal proxy not responding (code={r['http_code']})")
         print("Start lab proxy first: python3 experiments/lab_proxy.py &")
