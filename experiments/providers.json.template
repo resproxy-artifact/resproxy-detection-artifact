@@ -1,0 +1,62 @@
+{
+  "providers": {
+    "brightdata": {
+      "host": "brd.superproxy.io",
+      "http_connect_port": 22225,
+      "socks5_port": 22228,
+      "username": "BRIGHTDATA_USER",
+      "password": "BRIGHTDATA_PASS",
+      "country_mode": "username_suffix",
+      "country_format": "-country-{country}",
+      "architecture": "super-proxy"
+    },
+    "oxylabs": {
+      "host": "pr.oxylabs.io",
+      "http_connect_port": 7777,
+      "socks5_port": 1080,
+      "username": "OXYLABS_USER",
+      "password": "OXYLABS_PASS",
+      "country_mode": "username_suffix",
+      "country_format": "-cc-{country}",
+      "architecture": "super-proxy"
+    },
+    "soax": {
+      "host": "proxy.soax.com",
+      "http_connect_port": 9000,
+      "socks5_port": 1080,
+      "username": "SOAX_USER",
+      "password": "SOAX_PASS",
+      "country_mode": "username_suffix",
+      "country_format": "-cc-{country}",
+      "architecture": "super-proxy"
+    },
+    "iproyal": {
+      "host": "geo.iproyal.com",
+      "http_connect_port": 12321,
+      "socks5_port": 12321,
+      "username": "IPROYAL_USER",
+      "password": "IPROYAL_PASS",
+      "country_mode": "username_suffix",
+      "country_format": "-country-{country}",
+      "architecture": "p2p"
+    },
+    "netnut": {
+      "host": "gw-resi.ntnt.io",
+      "http_connect_port": 5959,
+      "socks5_port": null,
+      "username": "NETNUT_USER",
+      "password": "NETNUT_PASS",
+      "country_mode": "username_suffix",
+      "country_format": "-country-{country}",
+      "architecture": "isp-level"
+    }
+  },
+  "ripe_atlas": {
+    "api_key": "YOUR_RIPE_ATLAS_API_KEY"
+  },
+  "server": {
+    "ip": "54.210.31.245",
+    "domain_direct": "direct.dns-insight.com",
+    "domain_cf": "cf.dns-insight.com"
+  }
+}
