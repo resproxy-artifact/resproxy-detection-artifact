@@ -1,0 +1,72 @@
+==================================================================
+PER-PROVIDER DETECTION (9 commercial variants)
+family              arch         n  medgap   det%    AUC
+brightdata          super     6182   210.0   98.0  0.984
+brightdata_mobile   mobile     311   285.9   93.8  0.941
+brightdata_isp      isp        366   123.6   99.4  0.994
+soax                super     6404   153.5   96.4  0.965
+oxylabs             super     3411   233.6   99.2  0.994
+iproyal             p2p       6275   255.3   99.5  0.996
+oxylabs_mobile      mobile    3457   188.9   97.7  0.982
+oxylabs_isp         isp       3455   188.2   97.5  0.984
+netnut              isp       5980   223.6   98.5  0.986
+  per-variant det range: 93.8--99.5%  | median 98.0%
+
+SERVER-INDEPENDENCE (per server_ip, core unified.pcap only)
+  server_3         n=  7990 det=98.1%
+  server_4         n=  7962 det=97.6%
+  server_2         n=  7963 det=98.7%
+  server_1         n=  8000 det=98.0%
+  max inter-server spread: 1.1 pp
+
+ARCH MEDIAN-GAP RANGES
+  super  : 154--234 ms
+  mobile : 189--286 ms
+  isp    : 124--224 ms
+  p2p    : 255--255 ms
+
+GAP/RTT HEATMAP (core unified cells)
+  cells (n>=5): 416
+  gap span: 46.7--427.4 ms (9x); min cell = 4.7x thr, max = 43x
+  RTT span: 3.8--394.2 ms (104x)
+  cells above threshold: 416/416
+
+LEAVE-ONE-OUT AUC (vs 550 direct)
+  per-provider AUC: 0.941--0.996 (floor brightdata_mobile); det 93.8--99.5%
+  per-server AUC: 0.979--0.989; det 97.6--98.7%
+  per-country AUC (15 cts): 0.925--0.994 (floor ru); det 92.3--99.2%
+
+THRESHOLD SWEEP (unscoreable pos = miss)
+  t= 6  TPR  97.3%  FPR  2.18%  F1 0.986
+  t= 8  TPR  97.3%  FPR  1.09%  F1 0.986
+  t=10  TPR  97.2%  FPR  0.36%  F1 0.986
+  t=12  TPR  97.2%  FPR  0.18%  F1 0.986
+  t=15  TPR  97.1%  FPR  0.18%  F1 0.985
+  t=20  TPR  96.9%  FPR  0.18%  F1 0.984
+
+PER-OS FPR (direct baseline, N=50 each)
+  linux    n=50 FPR=0.0% medgap=0.44
+  windows  n=50 FPR=0.0% medgap=0.62
+  macos    n=50 FPR=0.0% medgap=0.24
+
+SCOPE BOUNDARIES
+  direct   n=550 flag=0.4% medgap=2.28
+  vpn      n=600 flag=0.2% medgap=1.74
+  squid    n=200 flag=0.5% medgap=2.75
+  tor      n=200 flag=100.0% medgap=175.08
+
+SOAX HTTP vs SOCKS5
+  soax http_connect  n=3451 det=100.0%
+  soax socks5        n=2953 det=92.1%
+  SOAX SOCKS5 per-country (low ones):
+    ru: 48.2% (n=191)
+    in: 57.0% (n=190)
+    za: 76.0% (n=210)
+
+PROTOCOL INVARIANCE (families with both protocols)
+  brightdata         HC 97.9%  S5 98.3%  d=0.3
+  soax               HC 100.0%  S5 92.1%  d=7.9
+  iproyal            HC 99.6%  S5 99.4%  d=0.2
+  netnut             HC 98.5%  S5 98.5%  d=0.0
+
+COVERAGE: unscoreable 312/38518 = 0.8%

@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering\footnotesize
+\caption{Isolating the client's own processing from network time.
+All three populations are \emph{direct} connections. BADPASS's interval
+spans the client's work on the server flight; ours closes before the
+server sends anything. When the network term is small, that work is what
+BADPASS measures. Thresholds are each method's own
+($t=\SI{10}{\milli\second}$ and $t=\SI{50}{\milli\second}$).}
+\label{tab:clientwork}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Direct population} & \textbf{$n$} & \textbf{TCP RTT} & \textbf{TLS RTT} & \textbf{BADPASS} & \textbf{ours}\\
+ & & (ms) & (ms) & FPR & FPR\\
+\midrule
+real browser, short path & 100 & 0.53 & 25.29 & \textbf{30\%} & 1\%\\
+real browser, long path & 100 & 147.73 & 150.32 & \textbf{0\%} & 0\%\\
+\texttt{curl}, short path & 100 & 0.34 & 1.70 & \textbf{0\%} & 0\%\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,21 @@
+# Credentials — never commit
+experiments/providers.json
+experiments/.env
+.env
+*.pem
+*.key
+
+# Generated outputs
+*.eps
+*.pdf
+*.log
+*.aux
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Raw captures (too large, contain PII)
+*.pcap
+*.pcapng
+data/raw/
+data/captures/

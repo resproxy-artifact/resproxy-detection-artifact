@@ -1,0 +1,38 @@
+
+### all proxied vs all direct: 35841 proxied vs 550 direct
+method       cov+   cov-     AUC  TPR@FPR=1%  TPR@FPR=0.5%   own thr     TPR     FPR
+ours        99.1% 100.0%   0.984       98.1%         98.1%       10m   98.1%    0.4%
+badpass     98.3% 100.0%   0.992       93.5%         88.9%       50m   97.3%    5.6%
+
+### real-browser directs only: 35841 proxied vs 150 direct
+method       cov+   cov-     AUC  TPR@FPR=1%  TPR@FPR=0.5%   own thr     TPR     FPR
+ours        99.1% 100.0%   0.986       98.4%         98.4%       10m   98.1%    0.0%
+badpass     98.3% 100.0%   0.996       99.6%         98.7%       50m   97.3%    0.0%
+
+### both methods scoreable: 35236 proxied vs 550 direct
+method       cov+   cov-     AUC  TPR@FPR=1%  TPR@FPR=0.5%   own thr     TPR     FPR
+ours       100.0% 100.0%   0.984       98.1%         98.1%       10m   98.1%    0.4%
+badpass    100.0% 100.0%   0.992       93.5%         88.9%       50m   97.3%    5.6%
+
+### per provider (vs all direct), AUC / TPR at own threshold
+provider                n  ours AUC   bp AUC  ours TPR   bp TPR
+brightdata           6182     0.984    0.991     98.0%    97.4%
+brightdata_isp        366     0.994    0.992     99.4%    96.1%
+brightdata_mobile     311     0.941    0.994     93.8%    99.3%
+iproyal              6275     0.996    0.988     99.5%    92.9%
+netnut               5980     0.986    0.990     98.5%    97.0%
+oxylabs              3411     0.994    0.994     99.2%    97.3%
+oxylabs_isp          3455     0.984    0.994     97.5%    99.5%
+oxylabs_mobile       3457     0.982    0.995     97.7%    99.5%
+soax                 6404     0.965    0.995     96.4%    99.1%
+
+### disagreement on proxied connections (own thresholds)
+  both detect   33641   95.5%
+  ours only       926    2.6%
+  BADPASS only    630    1.8%
+  neither          39    0.1%
+  families among our misses: {'soax': 230, 'brightdata': 118, 'netnut': 86, 'oxylabs_isp': 81, 'oxylabs_mobile': 80, 'oxylabs': 28, 'iproyal': 25, 'brightdata_mobile': 19}
+
+### coverage over ALL labelled connections
+  ours       unscoreable    312 / 38518 (0.8%)  {'resproxy': 312}
+  badpass    unscoreable    605 / 38518 (1.6%)  {'resproxy': 605}
